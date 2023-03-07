@@ -12,6 +12,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+# Initialize environment
+environ.Env.read_env()
+env = environ.Env()
+
+DJANGO_DEV = env.bool('DJANGO_DEV', default=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v5ysi@&5mjwb=h3r+g#@o1lr(qi*jw*_p77p-w3kfoz75wz8z5'
+SECRET_KEY = env.str(
+    'SECRET_KEY', default='k!6c3%m3babnqhcej(&xvy1r*du#5!t&d5xvjwal682u37*p&b')  # use a default for dev
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DJANGO_DEV
 
 ALLOWED_HOSTS = ['moser-finance.fly.dev']
 
@@ -131,4 +139,4 @@ STATICFILES_DIRS = (
 
 DJANGO_VITE_ASSETS_PATH = os.path.join(BASE_DIR, "../frontend/dist")
 STATIC_ROOT = 'static'
-DJANGO_VITE_DEV_MODE = True
+DJANGO_VITE_DEV_MODE = DJANGO_DEV
