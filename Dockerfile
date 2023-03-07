@@ -15,6 +15,7 @@ RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
+RUN pip3 install gunicorn
 
 RUN apt-get update && apt-get install -y curl
 
