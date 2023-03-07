@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v5ysi@&5mjwb=h3r+g#@o1lr(qi*jw*_p77p-w3kfoz75wz8z5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['moser-finance.fly.dev']
 
 
 # Application definition
