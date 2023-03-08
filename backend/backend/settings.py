@@ -23,7 +23,19 @@ DJANGO_DEV = env.bool('DJANGO_DEV', default=True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -34,7 +46,7 @@ SECRET_KEY = env.str(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DJANGO_DEV
 
-ALLOWED_HOSTS = ['moser-finance.fly.dev']
+ALLOWED_HOSTS = ['moser-finance.fly.dev', 'localhost']
 
 
 # Application definition
@@ -47,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_vite',
+    'react_refresh'
 ]
 
 MIDDLEWARE = [
@@ -139,4 +152,4 @@ STATICFILES_DIRS = (
 
 DJANGO_VITE_ASSETS_PATH = os.path.join(BASE_DIR, "../frontend/dist")
 STATIC_ROOT = 'static'
-DJANGO_VITE_DEV_MODE = DJANGO_DEV
+DJANGO_VITE_DEV_MODE = False
