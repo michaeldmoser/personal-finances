@@ -13,9 +13,7 @@ COPY requirements.txt /tmp/requirements.txt
 
 RUN set -ex && \
     pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
-    rm -rf /root/.cache/
-RUN pip3 install gunicorn
+    pip install "poetry==1.4.0"
 
 RUN apt-get update && apt-get install -y curl
 
@@ -24,6 +22,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && \
 RUN npm install -g pnpm
 
 COPY . /code/
+RUN poetry config virtualenvs.create false \
+  && poetry install "--no-dev" --no-interaction --no-ansi
+# && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
 
 RUN cd frontend && pnpm install
 RUN cd frontend && pnpm build
