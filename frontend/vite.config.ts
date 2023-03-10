@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
+import { env } from 'process';
+
+const PORT = env.VITE_DEV_PORT ?? 5173;
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,9 +19,9 @@ export default defineConfig({
   },
   server: {
     host: 'localhost',
-    port: 3000,
+    port: PORT,
     strictPort: true,
-    origin: 'http://localhost:3000'
+    origin: `http://localhost:${PORT}`
   },
   resolve: {
     alias: {
