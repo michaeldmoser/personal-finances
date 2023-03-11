@@ -18,7 +18,7 @@ export default defineConfig({
     }
   },
   server: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: PORT,
     strictPort: true,
     origin: `http://localhost:${PORT}`

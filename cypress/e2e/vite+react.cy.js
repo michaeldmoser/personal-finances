@@ -1,5 +1,6 @@
-describe('template spec', () => {
+describe('Basic page', () => {
   it('passes', () => {
-    cy.visit('https://example.cypress.io')
-  })
-})
+    cy.visit('http://localhost:5174');
+    cy.findByRole('heading', { level: 1, name: 'Vite + React' });
+  });
+});
