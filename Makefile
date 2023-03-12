@@ -25,7 +25,10 @@ dev:
 test-full: test-e2e
 
 test-e2e: setup
-	poetry run bin/e2e-test
+	poetry run bin/e2e-test run
+
+cypress:
+	poetry run bin/e2e-test open
 
 clean:
 	find . -type f -name *.pyc -delete
@@ -33,4 +36,4 @@ clean:
 	rm -rf node_modules
 	rm -rf frontend/node_modules
 
-.PHONY: dev test-e2e test-full
+.PHONY: cypress dev test-e2e test-full
