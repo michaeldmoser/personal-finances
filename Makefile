@@ -27,4 +27,10 @@ test-full: test-e2e
 test-e2e:
 	poetry run bin/e2e-test
 
+clean:
+	find . -type f -name *.pyc -delete
+	find . -type d -name __pycache__ -delete
+	rm -rf node_modules
+	rm -rf frontend/node_modules
+	
 .PHONY: dev test-e2e test-full
